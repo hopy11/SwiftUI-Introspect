@@ -123,13 +123,21 @@ public enum Introspect {
             return nil
         }
         
+        var reted: AnyViewType?
+        
         for subview in superview.subviews[0..<entryIndex].reversed() {
-            if let typed = subview as? AnyViewType {
-                return typed
+            //autoreleasepool {
+            if let typed = subview as? AnyViewType, typed.superview != nil {
+                //return typed
+                reted = typed
+                break
             }
+            //}
+            
         }
         
-        return nil
+        //return nil
+        return reted
     }
     
     /// Finds a previous sibling that contains a view controller of the specified type.
