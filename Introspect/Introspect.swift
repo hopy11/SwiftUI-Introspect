@@ -100,7 +100,7 @@ public enum Introspect {
         }
         
         for subview in superview.subviews[0..<entryIndex].reversed() {
-            if let typed = findChild(ofType: type, in: subview) {
+            if let typed = findChild(ofType: type, in: subview),  typed.superview != nil  {
                 return typed
             }
         }
@@ -127,7 +127,7 @@ public enum Introspect {
         
         for subview in superview.subviews[0..<entryIndex].reversed() {
             //autoreleasepool {
-            if let typed = subview as? AnyViewType, typed.superview != nil {
+            if let typed = subview as? AnyViewType {
                 //return typed
                 reted = typed
                 break
